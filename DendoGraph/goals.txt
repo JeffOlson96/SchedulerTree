@@ -1,0 +1,10 @@
+1. locate drag end x and y of node
+	so we can push class object to scheduler
+
+2. add level higher than 'CS-101 blah blah' i.e. 
+
+3. add lower layer that splits by ACT and DIS
+
+4. little scaled down version in top left corner
+
+5. 

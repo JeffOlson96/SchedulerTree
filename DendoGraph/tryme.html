@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>button</title>
+<body>
+<style>
+
+body {
+  font-family: Univers, Arial, sans-serif;
+}
+
+.button rect {
+  stroke: #999faa; /* navy 40% */
+  stroke-width: 2px;
+}
+
+.button rect.pressed {
+  fill: #000f2b; /* navy 100% */
+}
+
+.button #gradient-start {
+  stop-color: #999faa; /* navy 40% */
+  stop-opacity: 1;
+}
+
+.button #gradient-stop {
+  stop-color: #4d576b; /* navy 70% */
+  stop-opacity: 1;
+}
+
+.button #gradient-start.active, .button #gradient-start.pressed {
+  stop-color: #4d576b; /* navy 70% */
+}
+
+.button #gradient-stop.active, .button #gradient-stop.pressed {
+  stop-color: #000f2b; /* navy 100% */
+}
+
+.button text {
+  font-size: 30px;
+  fill: #eee;
+  pointer-events: none;
+  text-anchor: middle;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+</style>
+<body>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+<script src="d3.button.js"></script>
+<script>
+
+var width = 960, height = 500;
+
+var data = [{label: "Click me",     x: width / 4, y: height / 4 },
+            {label: "Click me too", x: width / 2, y: height / 2 }];
+
+var svg = d3.select('body').append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+var button = d3.button()
+    .on('press', function(d, i) { console.log("Pressed", d, i, this.parentNode)})
+    .on('release', function(d, i) { console.log("Released", d, i, this.parentNode)});
+
+// Add buttons
+var buttons = svg.selectAll('.button')
+    .data(data)
+  .enter()
+    .append('g')
+    .attr('class', 'button')
+    .call(button);
+
+</script>
